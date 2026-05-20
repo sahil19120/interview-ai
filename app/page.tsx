@@ -10,12 +10,26 @@ export default function Home() {
       <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-purple-500/20 blur-3xl rounded-full"></div>
 
       <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-blue-500/20 blur-3xl rounded-full"></div>
-      
+
       {/* Navbar */}
-      <nav className="flex items-center justify-between px-8 py-6 border-b border-white/10">
+      <nav className="flex items-center justify-between px-8 py-6 border-b border-white/10 backdrop-blur-xl sticky top-0 z-50">
         <h1 className="text-2xl font-bold">
           Interview<span className="text-blue-500">AI</span>
         </h1>
+
+        <div className="hidden md:flex items-center gap-8 text-gray-300">
+          <a href="#" className="hover:text-white transition">
+            Features
+          </a>
+
+          <a href="#" className="hover:text-white transition">
+            Dashboard
+          </a>
+
+          <a href="#" className="hover:text-white transition">
+            Pricing
+          </a>
+        </div>
 
         <Button className="bg-blue-600 hover:bg-blue-700">
           Get Started
@@ -123,6 +137,43 @@ export default function Home() {
             </CardContent>
           </Card>
         </motion.div>
+      </section>
+      {/*stats section */}
+      <section className="px-8 pb-24">
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-xl">
+            <h2 className="text-4xl font-bold text-blue-500">
+              10K+
+            </h2>
+
+            <p className="text-gray-400 mt-2">
+              Mock Interviews Completed
+            </p>
+          </div>
+
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-xl">
+            <h2 className="text-4xl font-bold text-blue-500">
+              95%
+            </h2>
+
+            <p className="text-gray-400 mt-2">
+              Success Improvement Rate
+            </p>
+          </div>
+
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-xl">
+            <h2 className="text-4xl font-bold text-blue-500">
+              AI Powered
+            </h2>
+
+            <p className="text-gray-400 mt-2">
+              Smart Personalized Feedback
+            </p>
+          </div>
+
+        </div>
       </section>
     </main>
   );
