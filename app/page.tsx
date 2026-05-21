@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
+import { SignInButton, UserButton } from "@clerk/nextjs";
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white overflow-hidden relative">
@@ -31,9 +33,15 @@ export default function Home() {
           </a>
         </div>
 
-        <Button className="bg-blue-600 hover:bg-blue-700">
-          Get Started
-        </Button>
+        <div className="flex items-center gap-4">
+          <SignInButton mode="modal">
+            <Button className="bg-blue-600 hover:bg-blue-700">
+              Sign In
+            </Button>
+          </SignInButton>
+
+          <UserButton />
+        </div>
       </nav>
 
       {/* Hero Section */}
@@ -175,6 +183,59 @@ export default function Home() {
 
         </div>
       </section>
+
+      <div className="mt-12">
+
+        <h2 className="text-2xl font-bold mb-6">
+          Recent Interviews
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <Card className="bg-white/5 border-white/10 text-white">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+
+                <div>
+                  <h3 className="text-xl font-semibold">
+                    Frontend Developer
+                  </h3>
+
+                  <p className="text-gray-400 mt-2">
+                    Completed 2 days ago
+                  </p>
+                </div>
+
+                <div className="text-blue-500 text-2xl font-bold">
+                  92%
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-white/5 border-white/10 text-white">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+
+                <div>
+                  <h3 className="text-xl font-semibold">
+                    Backend Engineer
+                  </h3>
+
+                  <p className="text-gray-400 mt-2">
+                    Completed 5 days ago
+                  </p>
+                </div>
+
+                <div className="text-blue-500 text-2xl font-bold">
+                  85%
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+        </div>
+      </div>
     </main>
   );
 }
