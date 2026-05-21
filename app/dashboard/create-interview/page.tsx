@@ -30,7 +30,7 @@ export default function CreateInterviewPage() {
 
             const data = await response.json();
             console.log(data);
-            
+
             setQuestions(data.questions);
 
         } catch (error) {
@@ -106,7 +106,16 @@ export default function CreateInterviewPage() {
                                 onClick={generateQuestions}
                                 className="w-full bg-blue-600 hover:bg-blue-700 py-6 text-lg"
                             >
-                                {loading ? "Generating..." : "Generate Interview"}
+                                {loading ? (
+                                    <div className="flex items-center gap-3">
+
+                                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+
+                                        Generating...
+                                    </div>
+                                ) : (
+                                    "Generate Interview"
+                                )}
                             </Button>
 
                             {questions && (

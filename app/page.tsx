@@ -93,6 +93,159 @@ export default function Home() {
       </section>
 
       {/* Cards Section */}
+      <section className="px-8 pb-24">
+
+        <div className="text-center mb-16">
+
+          <h2 className="text-5xl font-bold">
+            Powerful AI Features
+          </h2>
+
+          <p className="text-gray-400 mt-4 text-lg">
+            Everything you need to crack your next interview.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+          <div className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-xl hover:scale-105 transition duration-300">
+
+            <h3 className="text-2xl font-semibold mb-4">
+              AI Interview Questions
+            </h3>
+
+            <p className="text-gray-400">
+              Generate smart technical and HR interview questions instantly.
+            </p>
+          </div>
+
+          <div className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-xl hover:scale-105 transition duration-300">
+
+            <h3 className="text-2xl font-semibold mb-4">
+              Instant Feedback
+            </h3>
+
+            <p className="text-gray-400">
+              Get AI-powered performance analysis and improvement tips.
+            </p>
+          </div>
+
+          <div className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-xl hover:scale-105 transition duration-300">
+
+            <h3 className="text-2xl font-semibold mb-4">
+              Analytics Dashboard
+            </h3>
+
+            <p className="text-gray-400">
+              Track interview scores and monitor your progress visually.
+            </p>
+          </div>
+
+          <div className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-xl hover:scale-105 transition duration-300">
+
+            <h3 className="text-2xl font-semibold mb-4">
+              Real Interview Experience
+            </h3>
+
+            <p className="text-gray-400">
+              Simulate actual technical interview sessions with timed questions.
+            </p>
+          </div>
+
+          <div className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-xl hover:scale-105 transition duration-300">
+
+            <h3 className="text-2xl font-semibold mb-4">
+              Secure Authentication
+            </h3>
+
+            <p className="text-gray-400">
+              Safe login and personalized interview dashboard using Clerk Auth.
+            </p>
+          </div>
+
+          <div className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-xl hover:scale-105 transition duration-300">
+
+            <h3 className="text-2xl font-semibold mb-4">
+              Modern SaaS UI
+            </h3>
+
+            <p className="text-gray-400">
+              Premium responsive design with animations and glassmorphism.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <section className="px-8 pb-24">
+
+        <div className="text-center mb-16">
+
+          <h2 className="text-5xl font-bold">
+            What Users Say
+          </h2>
+
+          <p className="text-gray-400 mt-4 text-lg">
+            Trusted by aspiring developers and students worldwide.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+          <div className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-xl">
+
+            <p className="text-gray-300 leading-relaxed">
+              “InterviewAI helped me improve my confidence before placements. The mock interviews felt real.”
+            </p>
+
+            <div className="mt-6">
+              <h3 className="font-semibold text-lg">
+                Rahul Sharma
+              </h3>
+
+              <p className="text-gray-500 text-sm">
+                Frontend Developer
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-xl">
+
+            <p className="text-gray-300 leading-relaxed">
+              “The analytics dashboard and AI feedback made interview preparation much easier.”
+            </p>
+
+            <div className="mt-6">
+              <h3 className="font-semibold text-lg">
+                Priya Verma
+              </h3>
+
+              <p className="text-gray-500 text-sm">
+                Software Engineer
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-xl">
+
+            <p className="text-gray-300 leading-relaxed">
+              “One of the best AI-based interview prep platforms I have used so far.”
+            </p>
+
+            <div className="mt-6">
+              <h3 className="font-semibold text-lg">
+                Arjun Mehta
+              </h3>
+
+              <p className="text-gray-500 text-sm">
+                MERN Stack Developer
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
       <section className="grid grid-cols-1 md:grid-cols-3 gap-6 px-8 pb-20">
 
         <motion.div
@@ -236,6 +389,13 @@ export default function Home() {
 
         </div>
       </div>
+      <footer className="border-t border-white/10 py-8 px-8 text-center text-gray-500">
+
+        <p>
+          © 2026 InterviewAI. Built with Next.js, Clerk, Gemini AI & Tailwind CSS.
+        </p>
+
+      </footer>
     </main>
   );
 }
