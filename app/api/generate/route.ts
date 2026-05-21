@@ -11,32 +11,36 @@ export async function POST(req: Request) {
     const { role, experience, techstack } = body;
 
     const model = genAI.getGenerativeModel({
-      model: "gemini-1.5-flash",
+      model: "gemini-1.5-flash-8b",
     });
 
     const prompt = `
-    Generate 10 interview questions for:
-    
-    Role: ${role}
-    Experience: ${experience}
-    Tech Stack: ${techstack}
+Generate 10 interview questions for:
 
-    Give concise technical interview questions.
-    `;
+Role: ${role}
+Experience: ${experience}
+Tech Stack: ${techstack}
+
+Give concise technical interview questions.
+`;
 
     const result = await model.generateContent(prompt);
 
-    const response = result.response.text();
+    const response = await result.response;
+
+    const text = response.text();
 
     return Response.json({
       success: true,
-      questions: response,
+      questions: text,
     });
 
   } catch (error) {
+    console.log(error);
+
     return Response.json({
       success: false,
-      error,
+      error: "Failed to generate questions",
     });
   }
 }
