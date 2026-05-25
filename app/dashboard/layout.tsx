@@ -20,9 +20,11 @@ export default function DashboardLayout({
             {/* Sidebar */}
             <aside className="w-72 border-r border-white/10 p-6 hidden md:flex flex-col bg-white/5 backdrop-blur-2xl">
 
-                <h1 className="text-3xl font-bold mb-10">
-                    Interview<span className="text-blue-500">AI</span>
-                </h1>
+                <Link href="/">
+                    <h1 className="text-3xl font-bold mb-10 cursor-pointer">
+                        Interview<span className="text-blue-500">AI</span>
+                    </h1>
+                </Link>
 
                 <div className="flex flex-col gap-4">
 

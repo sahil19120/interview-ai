@@ -33,6 +33,10 @@ export default function CreateInterviewPage() {
             console.log(data);
 
             setQuestions(data.questions);
+            localStorage.setItem(
+                "interviewQuestions",
+                JSON.stringify(data.questions)
+            );
 
         } catch (error) {
             console.log(error);
