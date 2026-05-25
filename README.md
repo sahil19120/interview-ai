@@ -12,7 +12,7 @@ Practice technical interviews with AI-generated questions, interactive mock sess
 [https://YOUR-VERCEL-LINK.vercel.app](https://YOUR-VERCEL-LINK.vercel.app)
 
 ## 🔗 GitHub Repository
-[https://github.com/YOUR_USERNAME/YOUR_REPO](https://github.com/YOUR_USERNAME/YOUR_REPO )
+https://github.com/sahil19120/interview-ai
 
 ---
 
@@ -53,6 +53,9 @@ Practice technical interviews with AI-generated questions, interactive mock sess
 # 📸 Screenshots
 
 ## Landing Page
+<img width="1895" height="914" alt="image" src="https://github.com/user-attachments/assets/279bf418-0617-4daf-b8aa-3583dd7f4b43" />
+<img width="1893" height="919" alt="image" src="https://github.com/user-attachments/assets/bd164f75-842f-4890-b55e-1b56b0b263f7" />
+
 - Modern SaaS-style landing page
 - Hero section with CTA
 - Responsive design
@@ -81,7 +84,7 @@ Practice technical interviews with AI-generated questions, interactive mock sess
 ## 1️⃣ Clone Repository
 
 ```bash
-git clone [https://github.com/YOUR_USERNAME/YOUR_REPO.git](https://github.com/YOUR_USERNAME/YOUR_REPO )
+git clone [https://github.com/sahil19120/interview-ai]
 ```
 
 ---
