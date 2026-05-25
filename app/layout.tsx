@@ -16,7 +16,12 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body>{children}</body>
+        <body className="bg-black text-white">
+          <div className="glow-blue"></div>
+          <div className="glow-purple"></div>
+
+          {children}
+        </body>
       </html>
     </ClerkProvider>
   );

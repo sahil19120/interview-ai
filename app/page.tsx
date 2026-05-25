@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -20,17 +21,28 @@ export default function Home() {
         </h1>
 
         <div className="hidden md:flex items-center gap-8 text-gray-300">
-          <a href="#" className="hover:text-white transition">
-            Features
-          </a>
 
-          <a href="#" className="hover:text-white transition">
+          <Link
+            href="/dashboard"
+            className="hover:text-white transition"
+          >
             Dashboard
-          </a>
+          </Link>
 
-          <a href="#" className="hover:text-white transition">
-            Pricing
-          </a>
+          <Link
+            href="/dashboard/create-interview"
+            className="hover:text-white transition"
+          >
+            Create Interview
+          </Link>
+
+          <Link
+            href="/dashboard/analytics"
+            className="hover:text-white transition"
+          >
+            Analytics
+          </Link>
+
         </div>
 
         <div className="flex items-center gap-4">
@@ -65,16 +77,20 @@ export default function Home() {
         </p>
 
         <div className="flex gap-4 mt-10 relative z-10">
-          <Button className="bg-blue-600 hover:bg-blue-700 px-6 py-6 text-lg">
-            Start Interview
-          </Button>
+          <Link href="/dashboard">
+            <Button className="bg-blue-600 hover:bg-blue-700 px-6 py-6 text-lg">
+              Start Interview
+            </Button>
+          </Link>
 
-          <Button
-            variant="outline"
-            className="px-6 py-6 text-lg border-white/20 bg-transparent"
-          >
-            Learn More
-          </Button>
+          <Link href="/dashboard/analytics">
+            <Button
+              variant="outline"
+              className="px-6 py-6 text-lg border-white/20 bg-transparent"
+            >
+              Learn More
+            </Button>
+          </Link>
         </div>
       </section>
 
@@ -389,6 +405,31 @@ export default function Home() {
 
         </div>
       </div>
+
+      <section className="px-8 pb-24">
+
+        <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-12 text-center">
+
+          <h2 className="text-5xl font-bold">
+            Ready to Crack Your Next Interview?
+          </h2>
+
+          <p className="text-white/80 mt-6 text-lg max-w-2xl mx-auto">
+            Practice with AI-powered mock interviews and improve your confidence before real placements.
+          </p>
+
+          <div className="mt-10">
+
+            <Link href="/dashboard">
+              <Button className="bg-white text-black hover:bg-gray-200 px-8 py-6 text-lg">
+                Get Started Now
+              </Button>
+            </Link>
+
+          </div>
+        </div>
+      </section>
+
       <footer className="border-t border-white/10 py-8 px-8 text-center text-gray-500">
 
         <p>

@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -117,7 +118,14 @@ export default function CreateInterviewPage() {
                                     "Generate Interview"
                                 )}
                             </Button>
-
+                            <Link href="/dashboard/interview-session">
+                                <Button
+                                    variant="outline"
+                                    className="w-full mt-4 border-white/10 bg-transparent"
+                                >
+                                    Start Mock Interview
+                                </Button>
+                            </Link>
                             {questions && (
                                 <div className="mt-8 bg-white/5 border border-white/10 rounded-2xl p-6 whitespace-pre-wrap">
                                     <h2 className="text-2xl font-bold mb-4">
