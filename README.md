@@ -1,37 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+InterviewAI 🚀
 
-## Getting Started
+AI-powered mock interview platform built with Next.js, TypeScript, Tailwind CSS, Clerk Authentication, Groq AI, and shadcn/ui.
+Practice technical interviews with AI-generated questions, interactive mock sessions, and instant evaluation feedback.
 
-First, run the development server:
+🌐 Live Demo
 
-```bash
+🔗 Live App:
+
+[https://YOUR-VERCEL-LINK.vercel.app](https://interview-ai-eight-plum.vercel.app/)
+
+🔗 GitHub Repository:
+
+[https://github.com/YOUR_USERNAME/YOUR_REPO](https://github.com/sahil19120/interview-ai)
+✨ Features
+🤖 AI-generated interview questions
+🎯 Role & tech-stack based interview generation
+🔐 Secure authentication using Clerk
+🧠 Mock interview session workflow
+📊 Analytics dashboard UI
+📝 AI answer evaluation system
+📱 Fully responsive modern UI
+🎨 Glassmorphism + animated SaaS design
+⚡ Fast performance with Next.js App Router
+☁️ Deployed on Vercel
+🛠️ Tech Stack
+Frontend
+Next.js 15
+TypeScript
+Tailwind CSS
+shadcn/ui
+Authentication
+Clerk
+AI Integration
+Groq AI API
+Deployment
+Vercel
+📸 Screenshots
+Landing Page
+Modern SaaS-style landing page
+Hero section with CTA
+Responsive design
+Dashboard
+Analytics overview
+Sidebar navigation
+Interview management UI
+AI Interview Generator
+Role-based interview generation
+Dynamic AI questions
+Mock Interview Session
+Interactive interview workflow
+Answer submission & evaluation
+Results Page
+AI-generated feedback
+Interview insights
+⚙️ Installation & Setup
+1️⃣ Clone Repository
+git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
+2️⃣ Navigate to Project
+cd interviewai
+3️⃣ Install Dependencies
+npm install
+4️⃣ Setup Environment Variables
+
+Create a .env.local file:
+
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=YOUR_KEY
+CLERK_SECRET_KEY=YOUR_KEY
+
+GROQ_API_KEY=YOUR_KEY
+5️⃣ Run Development Server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🧠 AI Workflow
+Generate Interview
+↓
+AI Questions Generated
+↓
+Start Mock Interview
+↓
+Submit Answers
+↓
+AI Evaluation
+↓
+Results & Feedback
+🚀 Deployment
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application is deployed on Vercel.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To deploy your own version:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+npm run build
 
-## Learn More
+Then deploy using:
 
-To learn more about Next.js, take a look at the following resources:
+Vercel
+Netlify
+Railway
+📌 Future Improvements
+🎤 Voice-based interviews
+📹 Webcam interview mode
+🗄️ MongoDB integration
+📈 Real analytics tracking
+🧾 Resume upload & analysis
+🧑‍💻 Coding interview mode
+🔥 Real-time AI scoring
+👨‍💻 Author
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Sahil Sirohi
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+GitHub: [https://github.com/YOUR_USERNAME](https://github.com/sahil19120/)
+LinkedIn: [https://linkedin.com/in/YOUR_LINKEDIN](https://www.linkedin.com/in/sahil-sirohi-9410b8261/)
+⭐ If you liked this project
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# interview-ai
+Give this repository a ⭐ on GitHub 😼🔥
