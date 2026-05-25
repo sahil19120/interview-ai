@@ -9,7 +9,7 @@ Practice technical interviews with AI-generated questions, interactive mock sess
 # 🌐 Live Demo
 
 ## 🔗 Live App
-[https://YOUR-VERCEL-LINK.vercel.app](https://YOUR-VERCEL-LINK.vercel.app)
+https://interview-ai-eight-plum.vercel.app/
 
 ## 🔗 GitHub Repository
 https://github.com/sahil19120/interview-ai
@@ -61,19 +61,27 @@ https://github.com/sahil19120/interview-ai
 - Responsive design
 
 ## Dashboard
+<img width="1897" height="899" alt="image" src="https://github.com/user-attachments/assets/b6a341ac-4d12-46c6-a34c-a87835176e78" />
+
 - Analytics overview
 - Sidebar navigation
 - Interview management UI
 
 ## AI Interview Generator
+<img width="1805" height="910" alt="image" src="https://github.com/user-attachments/assets/7613dceb-d193-4b0e-88dd-b745a6cea642" />
+
 - Role-based interview generation
 - Dynamic AI questions
 
 ## Mock Interview Session
+<img width="1617" height="831" alt="image" src="https://github.com/user-attachments/assets/fbb93d87-9cb2-4729-b4a0-19413819ca2a" />
+
 - Interactive interview workflow
 - Answer submission & evaluation
 
 ## Results Page
+<img width="1540" height="845" alt="image" src="https://github.com/user-attachments/assets/a50cb354-9ce9-4ca8-bc3c-f31f7473772d" />
+
 - AI-generated feedback
 - Interview insights
 
