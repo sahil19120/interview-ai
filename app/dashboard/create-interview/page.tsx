@@ -30,9 +30,15 @@ export default function CreateInterviewPage() {
             });
 
             const data = await response.json();
+
             console.log(data);
 
+            if (!response.ok || !data.success) {
+                throw new Error(data.error || "Failed to generate interview");
+            }
+
             setQuestions(data.questions);
+
             localStorage.setItem(
                 "interviewQuestions",
                 JSON.stringify(data.questions)

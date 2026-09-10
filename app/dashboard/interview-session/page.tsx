@@ -43,42 +43,95 @@ export default function InterviewSessionPage() {
 
   const [loading, setLoading] = useState(false);
 
+  const [submitted, setSubmitted] = useState(false);
+
+  const [results, setResults] = useState<
+    {
+      question: string;
+      answer: string;
+      feedback: string;
+    }[]
+  >([]);
+
+
+
   const nextQuestion = () => {
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
+      setAnswer("");
+      setFeedback("");
+
+      setSubmitted(false);
     }
-  };
-
-  const submitAnswer = async () => {
-    setLoading(true);
-
-    setTimeout(() => {
-      setFeedback(`
-Score: 8/10
-
-Strengths:
-- Good explanation
-- Clear understanding
-
-Weaknesses:
-- Could explain more deeply
-
-Tips:
-- Add real-world examples
-    `);
-
-      setLoading(false);
-    }, 1200);
   };
 
   const endInterview = () => {
     localStorage.setItem(
-      "interviewFeedback",
-      feedback
+      "interviewResults",
+      JSON.stringify(results)
     );
 
     router.push("/dashboard/results");
   };
+
+  const submitAnswer = async () => {
+    if (!answer.trim()) {
+      setFeedback("Please write an answer before submitting.");
+      return;
+    }
+
+    try {
+      setLoading(true);
+      setFeedback("");
+
+      const response = await fetch("/api/evaluate", {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+          question: questions[currentQuestion],
+          answer: answer,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.feedback || "Evaluation failed");
+      }
+
+      setFeedback(data.feedback);
+
+      const newResult = {
+        question: questions[currentQuestion],
+        answer: answer,
+        feedback: data.feedback,
+      };
+
+      setResults((previousResults) => [
+        ...previousResults,
+        newResult,
+      ]);
+
+      setSubmitted(true);
+
+    } catch (error) {
+      console.error("Evaluation error:", error);
+
+      setFeedback(
+        error instanceof Error
+          ? error.message
+          : "Failed to evaluate answer. Please try again."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
 
   return (
     <main className="min-h-screen bg-black text-white p-8">
@@ -118,9 +171,14 @@ Tips:
 
               <Button
                 onClick={submitAnswer}
+                disabled={loading || submitted}
                 className="mt-4 bg-green-600 hover:bg-green-700"
               >
-                {loading ? "Evaluating..." : "Submit Answer"}
+                {loading
+                  ? "Evaluating..."
+                  : submitted
+                    ? "Answer Submitted"
+                    : "Submit Answer"}
               </Button>
 
               {feedback && (
@@ -143,8 +201,8 @@ Tips:
             <div className="flex justify-between mt-8">
 
               <Button
-                onClick={endInterview}
                 variant="outline"
+                onClick={endInterview}
                 className="border-white/10 bg-transparent"
               >
                 End Interview

@@ -6,42 +6,68 @@ const groq = new Groq({
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
+    const { question, answer } = await req.json();
 
-    const { question, answer } = body;
+    if (!question || !answer) {
+      return Response.json(
+        {
+          success: false,
+          feedback: "Question and answer are required.",
+        },
+        { status: 400 }
+      );
+    }
 
-   const prompt = `
-Evaluate this interview answer briefly.
+    const prompt = `
+You are an expert technical interviewer.
+
+Evaluate the candidate's answer to the interview question.
 
 Question:
 ${question}
 
-Answer:
+Candidate Answer:
 ${answer}
 
-Return:
-Score: x/10
-Strengths:
-Weaknesses:
-Tips:
+Return a concise evaluation in exactly this format:
 
-Keep response under 120 words.
+Score: X/10
+
+Strengths:
+- point 1
+- point 2
+
+Weaknesses:
+- point 1
+- point 2
+
+Improvement Tips:
+- point 1
+- point 2
+
+Keep the complete response under 150 words.
 `;
 
-    const completion =
-      await groq.chat.completions.create({
-        messages: [
-          {
-            role: "user",
-            content: prompt,
-          },
-        ],
+    const completion = await groq.chat.completions.create({
+      model: "openai/gpt-oss-120b",
 
-        model: "llama-3.1-8b-instant",
-      });
+      messages: [
+        {
+          role: "user",
+          content: prompt,
+        },
+      ],
+
+      temperature: 0.4,
+      max_completion_tokens: 350,
+    });
 
     const feedback =
-      completion.choices[0]?.message?.content || "";
+      completion.choices[0]?.message?.content;
+
+    if (!feedback) {
+      throw new Error("No evaluation received from AI.");
+    }
 
     return Response.json({
       success: true,
@@ -49,11 +75,17 @@ Keep response under 120 words.
     });
 
   } catch (error) {
-    console.log(error);
+    console.error("Groq evaluation error:", error);
 
-    return Response.json({
-      success: false,
-      feedback: "Evaluation failed",
-    });
+    return Response.json(
+      {
+        success: false,
+        feedback:
+          error instanceof Error
+            ? error.message
+            : "Failed to evaluate the answer.",
+      },
+      { status: 500 }
+    );
   }
 }
