@@ -21,7 +21,7 @@ export async function POST(req: Request) {
     const prompt = `
 You are an expert technical interviewer.
 
-Evaluate the candidate's answer to the interview question.
+Evaluate the candidate's answer.
 
 Question:
 ${question}
@@ -29,23 +29,33 @@ ${question}
 Candidate Answer:
 ${answer}
 
-Return a concise evaluation in exactly this format:
+Return ONLY valid JSON.
 
-Score: X/10
+Do not use markdown.
+Do not use code blocks.
+Do not add any text before or after the JSON.
 
-Strengths:
-- point 1
-- point 2
+Use exactly this structure:
 
-Weaknesses:
-- point 1
-- point 2
+{
+  "score": 0,
+  "strengths": [
+    "point 1",
+    "point 2"
+  ],
+  "weaknesses": [
+    "point 1",
+    "point 2"
+  ],
+  "improvements": [
+    "point 1",
+    "point 2"
+  ]
+}
 
-Improvement Tips:
-- point 1
-- point 2
-
-Keep the complete response under 150 words.
+Rules:
+- Score must be a number between 0 and 10.
+- Keep feedback concise.
 `;
 
     const completion = await groq.chat.completions.create({
@@ -59,14 +69,32 @@ Keep the complete response under 150 words.
       ],
 
       temperature: 0.4,
+
       max_completion_tokens: 350,
+
+      response_format: {
+        type: "json_object",
+      },
     });
 
-    const feedback =
+    const feedbackText =
       completion.choices[0]?.message?.content;
 
-    if (!feedback) {
+    if (!feedbackText) {
       throw new Error("No evaluation received from AI.");
+    }
+
+    let feedback;
+
+    try {
+      feedback = JSON.parse(feedbackText);
+    } catch {
+      console.error(
+        "Invalid AI response:",
+        feedbackText
+      );
+
+      throw new Error("AI returned invalid JSON.");
     }
 
     return Response.json({
