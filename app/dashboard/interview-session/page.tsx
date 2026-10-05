@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import { Textarea } from "@/components/ui/textarea";
 
@@ -46,6 +46,7 @@ export default function InterviewSessionPage() {
 
   const router = useRouter();
 
+  const finishInProgress = useRef(false);
 
   const [questions, setQuestions] =
     useState<string[]>([]);
@@ -145,153 +146,176 @@ export default function InterviewSessionPage() {
     Finish Interview
   */
 
-  const finishInterview = () => {
-
-  try {
-
-    localStorage.setItem(
-      "interviewResults",
-      JSON.stringify(results)
-    );
-
-
-    const storedInterview =
-      localStorage.getItem(
-        "currentInterview"
-      );
-
-
-    if (!storedInterview) {
-
-      throw new Error(
-        "Current interview data not found."
-      );
-
+  const finishInterview = async () => {
+    if (finishInProgress.current) {
+      return;
     }
 
+    finishInProgress.current = true;
 
-    if (results.length === 0) {
+    try {
 
-      throw new Error(
-        "No interview results found."
+      localStorage.setItem(
+        "interviewResults",
+        JSON.stringify(results)
       );
 
-    }
+
+      const storedInterview =
+        localStorage.getItem(
+          "currentInterview"
+        );
 
 
-    const interviewData =
-      JSON.parse(storedInterview);
+      if (!storedInterview) {
+
+        throw new Error(
+          "Current interview data not found."
+        );
+
+      }
 
 
-    const overallScore =
-      results.reduce(
-        (total, result) =>
-          total +
-          result.feedback.score,
-        0
-      ) / results.length;
+      if (results.length === 0) {
+
+        throw new Error(
+          "No interview results found."
+        );
+
+      }
 
 
-    const duration =
-      startTime
-        ? Math.floor(
+      const interviewData =
+        JSON.parse(storedInterview);
+
+
+      const overallScore =
+        results.reduce(
+          (total, result) =>
+            total +
+            result.feedback.score,
+          0
+        ) / results.length;
+
+
+      const duration =
+        startTime
+          ? Math.floor(
             (Date.now() - startTime) /
             1000
           )
-        : 0;
+          : 0;
 
 
-    const newHistoryItem:
-      InterviewHistoryItem = {
+      const newHistoryItem:
+        InterviewHistoryItem = {
 
-      id:
-        crypto.randomUUID(),
+        id:
+          crypto.randomUUID(),
 
-      role:
-        interviewData.role,
+        role:
+          interviewData.role,
 
-      experience:
-        interviewData.experience,
+        experience:
+          interviewData.experience,
 
-      techstack:
-        interviewData.techstack,
+        techstack:
+          interviewData.techstack,
 
-      questionCount:
-        interviewData.questionCount,
+        questionCount:
+          interviewData.questionCount,
 
-      createdAt:
-        interviewData.createdAt,
+        createdAt:
+          interviewData.createdAt,
 
-      completedAt:
-        new Date().toISOString(),
+        completedAt:
+          new Date().toISOString(),
 
-      overallScore:
-        Number(
-          overallScore.toFixed(1)
-        ),
+        overallScore:
+          Number(
+            overallScore.toFixed(1)
+          ),
 
-      questionsAnswered:
-        results.length,
+        questionsAnswered:
+          results.length,
 
-      duration:
+        duration:
 
-        duration,
+          duration,
 
-      results:
+        results:
 
-        results,
+          results,
 
-    };
+      };
+
+      const response = await fetch("/api/interviews", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newHistoryItem),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.message || "Failed to save interview to database"
+        );
+      }
+
+      console.log("Interview saved to MongoDB:", data);
 
 
-    const storedHistory =
-      localStorage.getItem(
-        "interviewHistory"
+      const storedHistory =
+        localStorage.getItem(
+          "interviewHistory"
+        );
+
+
+      const previousHistory =
+        storedHistory
+          ? JSON.parse(storedHistory)
+          : [];
+
+
+      const updatedHistory = [
+
+        newHistoryItem,
+
+        ...previousHistory,
+
+      ];
+
+
+      localStorage.setItem(
+        "interviewHistory",
+        JSON.stringify(updatedHistory)
       );
 
 
-    const previousHistory =
-      storedHistory
-        ? JSON.parse(storedHistory)
-        : [];
+      console.log(
+        "Interview history saved:",
+        updatedHistory
+      );
 
 
-    const updatedHistory = [
-
-      newHistoryItem,
-
-      ...previousHistory,
-
-    ];
+      router.push(
+        "/dashboard/results"
+      );
 
 
-    localStorage.setItem(
-      "interviewHistory",
-      JSON.stringify(updatedHistory)
-    );
+    } catch (error) {
 
+      console.error(
+        "Failed to save interview history:",
+        error
+      );
 
-    console.log(
-      "Interview history saved:",
-      updatedHistory
-    );
+    }
 
-
-    router.push(
-      "/dashboard/results"
-    );
-
-
-  } catch (error) {
-
-    console.error(
-      "Failed to save interview history:",
-      error
-    );
-
-  }
-
-};
+  };
 
 
 
